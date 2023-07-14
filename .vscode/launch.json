@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch via npm start",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": [
+          "start"
+        ],
+        "port": 3000, // Replace with your desired port number
+        "skipFiles": [
+          "<node_internals>/**"
+        ]
+      }
+    ]
+  }
+  
