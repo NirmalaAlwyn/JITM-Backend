@@ -8,11 +8,14 @@ var app = require('../app');
 var debug = require('debug')('jitm-backend:server');
 var http = require('http');
 
+require('dotenv').config();
+
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+// var port = normalizePort(process.env.PORT || '3000');
+var port = process.env.PROD_PORT;
 app.set('port', port);
 
 /**
@@ -26,9 +29,11 @@ var server = http.createServer(app);
  */
 
 // server.listen(port);
-// var host = "0.0.0.0";
-var host = "10.8.0.8";
-var host = "localhost";
+ //var host = "0.0.0.0";
+//var host = "10.8.0.8";
+// var host = "localhost";
+var host = process.env.PROD_HOST;
+console.log(`HOST : ${host}  Listen Port ${port}`);
 server.listen(port,host,() => {
 
 });

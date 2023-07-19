@@ -1,5 +1,4 @@
 const connection = require('../database_controller/vdprovisioningdb');
-// import dateFormat, { masks } from "dateformat";
 
 
 exports.reqforPastVoiceDrops = async function(req,res) {
@@ -46,6 +45,7 @@ getPastVoiceDropCount = (accountId,clientId) => {
         console.log(`CountQuery ${CountQuery}`);
         connection.query(CountQuery,(err,result) => {
             if(err) {
+                console.log(JSON.stringify(err));
                 return reject(err);
             }
             else {
@@ -62,6 +62,7 @@ getpastvoicedropDetails = (accountId,clientId) => {
         console.log(`queryForVDdetails ${queryForVDdetails}`);
         connection.query(queryForVDdetails,(err,result) => {
             if(err) {
+                console.log(JSON.stringify(err));
                 return reject(err);
             }
             else {

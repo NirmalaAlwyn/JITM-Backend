@@ -1,9 +1,5 @@
 
 const connection = require('../database_controller/db_connection');
-// const connection = require('../database_controller/db_connection');
-
-// const { rejects } = require('assert');
-// const { resolve } = require('path');
 
 exports.reqforSignin = async function(req,res) {
     try {
@@ -19,7 +15,7 @@ exports.reqforSignin = async function(req,res) {
                 const result = {
                     loginStatus : "valid",
                     accountId :loginResult[0].accountid,
-                    accountname :"Door Sabha Nigam Limited",
+                    accountname :loginResult[0].accountname,
                     clientId :loginResult[0].clientid,
                     clientName :loginResult[0].organization, 
                     emailId : userName
@@ -53,7 +49,9 @@ exports.reqforSignin = async function(req,res) {
 
 getLoginclientDetails = (userName,password) => {
     return new Promise((resolve,reject) => {
-        const loginQuery = "select accountid,clientid,organization from clients where emailid ='" +userName + "' AND client_status=1 AND client_password COLLATE latin1_general_cs = '" +password +"'"; 
+        // const loginQuery = "select accountid,clientid,organization from clients where emailid ='" +userName + "' AND client_status=1 AND client_password COLLATE latin1_general_cs = '" +password +"'"; 
+        const loginQuery = "select c.accountid,c.clientid,c.organization,a.accountname from clients c JOIN accounts a ON c.accountid=a.accountid where c.emailid ='" +userName + "' AND c.client_status=1 AND c.client_password COLLATE latin1_general_cs = '" +password +"'"; 
+        
         console.log(`loginQuery ${loginQuery}`);
             connection.query(loginQuery,(err,result) => {
             if(err) {
